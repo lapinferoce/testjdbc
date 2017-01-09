@@ -1,4 +1,4 @@
-package fr.valtech.JdbcTest;
+package fr.trackandshine.JdbcTest;
 
 import java.awt.peer.SystemTrayPeer;
 

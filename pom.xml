@@ -37,7 +37,7 @@
                     <archive>
                         <manifest>
                             <!-- Jar file entry point -->
-                            <mainClass>fr.valtech.JdbcTest.Main</mainClass>
+                            <mainClass>fr.trackandshine.JdbcTest.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
