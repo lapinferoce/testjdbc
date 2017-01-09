@@ -39,7 +39,7 @@ public class DoMyTest {
 
             Connection conn = DriverManager.getConnection(url, props);
 
-
+            return true;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
