@@ -1,6 +1,12 @@
 package fr.trackandshine.JdbcTest;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -9,25 +15,43 @@ import java.util.Properties;
 public class DoMyTest {
     private String url;
     private Properties props;
+    private String driverpath;
 
-
-    public DoMyTest(String user, String password, String ssl, String aurl) {
-        url = aurl
+    public DoMyTest(String adriverpath, String user, String password, String ssl, String aurl) {
+        driverpath = adriverpath;
+        url = aurl;
         props = new Properties();
         props.setProperty("user", user);
         props.setProperty("password", password);
         props.setProperty("ssl", ssl);
     }
 
-    plublic Boolean
+    public boolean doTest() {
+        URL u = null;
+        try {
+            u = new URL("jar:file:" + driverpath);
 
-    DoMyTest() {
-        // String url = "jdbc:postgresql://localhost/test";
+            String classname = "org.postgresql.Driver";
+            URLClassLoader ucl = new URLClassLoader(new URL[]{u});
+            Driver d = (Driver) Class.forName(classname, true, ucl).newInstance();
+            DriverManager.registerDriver(new ProxyDriver(d));
 
-        Connection conn = DriverManager.getConnection(url, props);
 
-        String url = "jdbc:postgresql://localhost/test?user=fred&password=secret&ssl=true";
-        Connection conn = DriverManager.getConnection(url);
+            Connection conn = DriverManager.getConnection(url, props);
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         return false;
     }
