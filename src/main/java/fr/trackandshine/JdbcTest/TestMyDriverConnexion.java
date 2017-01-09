@@ -12,12 +12,12 @@ import java.util.Properties;
 /**
  * Created by developer on 1/9/17.
  */
-public class DoMyTest {
+public class TestMyDriverConnexion {
     private String url;
     private Properties props;
     private String driverpath;
 
-    public DoMyTest(String adriverpath, String user, String password, String ssl, String aurl) {
+    public TestMyDriverConnexion(String adriverpath, String user, String password, String ssl, String aurl) {
         driverpath = adriverpath;
         url = aurl;
         props = new Properties();
