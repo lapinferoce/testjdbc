@@ -12,12 +12,14 @@ import java.util.Properties;
 /**
  * Created by developer on 1/9/17.
  */
-public class TestMyDriverConnexion {
+public class TestMyDriverConnexion implements Test {
     private String url;
     private Properties props;
     private String driverpath;
 
-    public TestMyDriverConnexion(String adriverpath, String user, String password, String ssl, String aurl) {
+    public TestMyDriverConnexion(){}
+
+     public void init(String adriverpath, String user, String password, String ssl, String aurl) {
         driverpath = adriverpath;
         url = aurl;
         props = new Properties();
@@ -26,6 +28,17 @@ public class TestMyDriverConnexion {
         props.setProperty("ssl", ssl);
     }
 
+    @Override
+    public String getName() {
+        return "Jdbc connexion";
+    }
+
+    @Override
+    public String description() {
+        return "Test the connexion to dababase throw jdbc";
+    }
+
+    @Override
     public boolean doTest() {
         URL u = null;
         try {
